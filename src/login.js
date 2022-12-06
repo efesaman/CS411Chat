@@ -1,5 +1,11 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 import { auth } from './auth.js';
+
+onAuthStateChanged(auth, (user) => {
+	if (user != null) {
+		goToMainTab();
+	}
+});
 
 function register() {
   const userEmail = document.getElementById("register_email").value
@@ -8,8 +14,17 @@ function register() {
 
   if (userPassword == userPasswordConfirm) {
     createUserWithEmailAndPassword(auth, userEmail, userPassword)
-    .then()
-  }
+    .then((userCredential) => {
+			axios.post('/api/users/create', {
+	        email: userEmail,
+	        id: userCredential.uid,
+          chats: [],
+	    });
+      goToMainTab()
+    })
+  } else {
+		window.alert("Passwords do not match!")
+	}
 
 }
 
@@ -17,7 +32,14 @@ function login() {
   const userEmail = document.getElementById("login_email").value
   const userPassword = document.getElementById("login_password").value
 
-  signInWithEmailAndPassword(auth, userEmail, userPassword).then()
+  signInWithEmailAndPassword(auth, userEmail, userPassword).then(() => {
+    goToMainTab()
+  }).catch((error) => {
+  	const errorCode = error.code
+    const errorMessage = error.message
+	console.log(errorMessage)
+	window.alert("Invalid email or password!")
+  })
 }
 
 function goToRegister() {
@@ -28,6 +50,10 @@ function goToRegister() {
 function goToLogin() {
 	document.getElementById("login_div").style.display = "block";
 	document.getElementById("register_div").style.display = "none";
+}
+
+function goToMainTab() {
+	location.href = '/main';
 }
 
 document.getElementById('register_btn').addEventListener('click', register, true);

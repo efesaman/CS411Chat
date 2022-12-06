@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login/Register</title>
+  </head>
+  <body>
+    <div id="login_div" style="display:block;">
+      <h1>Login</h1>
+      <div>
+        <input type="email" placeholder="Email" id="login_email">
+      </div>
+      <div>
+        <input type="password" placeholder="Password" id="login_password">
+      </div>
+      <div>
+        <button id="login_btn">Login</button>
+        <p>
+          Haven't registered yet? Click to register:
+          <button id="go_to_register_btn">Go to register</button>
+        </p>
+      </div>
+    </div>
+    <div id="register_div" style="display:none;">
+      <h1>Register</h1>
+      <div>
+        <input type="email" placeholder="Email" id="register_email">
+      </div>
+      <div>
+        <input type="password" placeholder="Password" id="register_password">
+      </div>
+      <div>
+        <input type="password" placeholder="Confirm Password" id="register_password_confirm">
+      </div>
+      <div>
+        <button id="register_btn">Register</button>
+        <p>
+          Already registered? Click to login:
+          <button id="go_to_login_btn">Go to login</button>
+        </p>
+      </div>
+    </div>
+  </body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="module" src="login.js"></script>
+</html>
