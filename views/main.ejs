@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>CS411Chat</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script type="module" src="main.js"></script>
     </script>
   </head>
@@ -13,7 +14,7 @@
 
     <form id="new-chat-form">
       <input type="text" id="new-chat-receiver" value="">
-      <button type="submit" name="send">Send</button>
+      <button type="submit">Create chat</button>
     </form>
 
     <button id="logout_button">Log out</button>

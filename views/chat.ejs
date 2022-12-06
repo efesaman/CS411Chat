@@ -3,14 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>CS411Chat</title>
+    <script>
+      const chatInd = "<%= chatIndex %>"
+    </script>
     <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
-    <script defer src="script.js">
+    <script type="module" src="chat.js">
     </script>
   </head>
   <body>
-    <div id="messages"></div>
-    <form id="send-message">
-      <input type="text" id="message-input" value="">
+    <div id="messages-list"></div>
+    <form id="send-message-form">
+      <input type="text" id="message-input">
       <button type="submit" name="send">Send</button>
     </form>
     <button id="logout_button">Log out</button>

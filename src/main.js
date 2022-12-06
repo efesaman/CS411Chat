@@ -1,5 +1,6 @@
 import { db, currentUserPromise } from './auth.js';
 import { arrayUnion, collection, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
+const socket = io('http://localhost:3000', { transports : ['websocket'] })
 
 const newChatForm = document.getElementById('new-chat-form')
 const newChatReceiver = document.getElementById('new-chat-receiver')
@@ -7,29 +8,13 @@ const user = await currentUserPromise;
 
 newChatForm.addEventListener('submit', async e => {
   e.preventDefault()
-  const receiver = newChatReceiver.value
-  const userEmail = user.email
-  const messages = []
-  const chat_id = "" + userEmail + receiver
-
-  const newChatRef = doc(db, "chats", chat_id);
-  await setDoc(newChatRef, {
-    user1: userEmail,
-    user2: receiver,
-    messages: messages
-  });
-
-  const user1Ref = doc(db, "users", userEmail);
-  await updateDoc(userRef, {
-    chats: arrayUnion(chat_id)
-  });
-
-  const user2Ref = doc(db, "users", receiver);
-  await updateDoc(userRef, {
-    chats: arrayUnion(chat_id)
+  axios.post('/api/chats/create', {
+      receiverEmail: newChatReceiver.value,
+      userEmail: user.email,
   });
 
   newChatReceiver.value = ''
+  location.reload()
 })
 
 async function viewChats() {
@@ -46,8 +31,8 @@ async function viewChats() {
 
     for (var chat in userObj.chats) {
       var button = document.createElement("a");
-    	button.href = "/chats/" + chat;
-    	var buttonText = document.createElement("span");
+    	button.href = "/" + chat;
+    	var buttonText = document.createElement("p");
     	buttonText.innerText = chat;
     	button.appendChild(buttonText);
     	divider.appendChild(button);
