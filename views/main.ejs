@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>CS411Chat</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module" src="main.js"></script>
+    </script>
+  </head>
+  <body>
+    <div id="chats-list">
+    </div>
+
+    <form action="/chat" method="POST">
+      <input type="text" name="receiver" required>
+      <button type="submit">New Chat</button>
+    </form>
+
+    <button id="logout_button">Log out</button>
+  </body>
+
+  <script type="module" src="logout.js"></script>
+</html>

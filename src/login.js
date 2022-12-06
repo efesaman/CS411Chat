@@ -25,7 +25,6 @@ function register() {
   } else {
 		window.alert("Passwords do not match!")
 	}
-
 }
 
 function login() {
