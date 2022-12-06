@@ -22,6 +22,7 @@ if (chatDocSnap.exists()) {
 } else {
   console.log("No such document!")
 }
+document.getElementById("chat-h1").innerText = "Chat with " + (userObj.email === chatObj.user2 ? chatObj.user1 : chatObj.user2);
 
 socket.emit("chat-connected", chatObj.id)
 

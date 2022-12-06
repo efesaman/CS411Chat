@@ -30,10 +30,15 @@ async function viewChats() {
     var divider = document.getElementById("chats-list")
 
     for (var chat in userObj.chats) {
+      var chatId = userObj.chats[chat]
+      const chatDocRef = doc(db, "chats", chatId)
+      const chatDocSnap = await getDoc(chatDocRef)
+      var chatObj = chatDocSnap.data()
       var button = document.createElement("a")
     	button.href = "/" + chat
     	var buttonText = document.createElement("p")
-    	buttonText.innerText = chat
+      buttonText.innerText = "Continue your conversation with: "
+    	buttonText.innerText += userObj.email === chatObj.user2 ? chatObj.user1 : chatObj.user2;
     	button.appendChild(buttonText)
     	divider.appendChild(button)
     }
