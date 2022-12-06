@@ -30,7 +30,6 @@ var divider = document.getElementById("messages-list")
 const sendForm = document.getElementById("send-message-form")
 
 async function viewMessages() {
-  chatObj.messages.sort()
   for (var msg in chatObj.messages) {
   	var msgText = document.createElement("p")
   	msgText.innerText = chatObj.messages[msg].sender + ": " + chatObj.messages[msg].content
