@@ -1,11 +1,11 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
-import { auth } from './auth.js';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
+import { auth } from './auth.js'
 
 onAuthStateChanged(auth, (user) => {
 	if (user != null) {
-		goToMainTab();
+		goToMainTab()
 	}
-});
+})
 
 function register() {
   const userEmail = document.getElementById("register_email").value
@@ -18,7 +18,7 @@ function register() {
 			axios.post('/api/users/create', {
 	        email: userEmail,
           chats: [],
-	    });
+	    })
       goToMainTab()
     })
   } else {
@@ -41,20 +41,20 @@ function login() {
 }
 
 function goToRegister() {
-	document.getElementById("login_div").style.display = "none";
-	document.getElementById("register_div").style.display = "block";
+	document.getElementById("login_div").style.display = "none"
+	document.getElementById("register_div").style.display = "block"
 }
 
 function goToLogin() {
-	document.getElementById("login_div").style.display = "block";
-	document.getElementById("register_div").style.display = "none";
+	document.getElementById("login_div").style.display = "block"
+	document.getElementById("register_div").style.display = "none"
 }
 
 function goToMainTab() {
-	location.href = '/main';
+	location.href = '/main'
 }
 
-document.getElementById('register_btn').addEventListener('click', register, true);
-document.getElementById('login_btn').addEventListener('click', login, true);
-document.getElementById('go_to_register_btn').addEventListener('click', goToRegister, true);
-document.getElementById('go_to_login_btn').addEventListener('click', goToLogin, true);
+document.getElementById('register_btn').addEventListener('click', register, true)
+document.getElementById('login_btn').addEventListener('click', login, true)
+document.getElementById('go_to_register_btn').addEventListener('click', goToRegister, true)
+document.getElementById('go_to_login_btn').addEventListener('click', goToLogin, true)

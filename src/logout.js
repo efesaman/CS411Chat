@@ -1,16 +1,16 @@
-import { signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
-import { auth } from './auth.js';
+import { signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js'
+import { auth } from './auth.js'
 
 function logout() {
   signOut(auth).then(() => {
-    goToLogin();
+    goToLogin()
   }).catch((error) => {
-    window.alert('Log out unsuccessful.');
-  });
+    window.alert('Log out unsuccessful.')
+  })
 }
 
 function goToLogin() {
-	location.href = '/';
+	location.href = '/'
 }
 
-document.getElementById('logout_button').addEventListener('click', logout, true);
+document.getElementById('logout_button').addEventListener('click', logout, true)
