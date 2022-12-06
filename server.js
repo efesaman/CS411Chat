@@ -36,7 +36,7 @@ app.get('/chats/:chat', function(req, res) {
 });
 
 app.post('/chat', (req, res) => {
-  // TODO: 
+  // TODO:
 })
 
 io.on('connection', socket => {
@@ -47,15 +47,14 @@ io.on('connection', socket => {
 
 app.post('/api/users/create', async (req, res) => {
   const email = req.body.email;
-  const id = req.body.id;
   const chats = req.body.chats;
 
-  await users.doc(id).set({email, id, chats});
+  await users.doc(email).set({email, chats});
 });
 
 app.get('/api/user', async (req, res) => {
-  const id = req.query.id;
-  const user = await users.doc(id).get();
+  const email = req.query.email;
+  const user = await users.doc(email).get();
 
   res.json(user);
 })

@@ -1,9 +1,9 @@
 import { db, currentUserPromise } from './auth.js';
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 
-async function viewChats() {
+async function viewMessages() {
     var user = await currentUserPromise;
-    const docRef = doc(db, "users", user.uid);
+    const docRef = doc(db, "chats", user.uid);
     const docSnap = await getDoc(docRef);
     var userObj;
     if (docSnap.exists()) {

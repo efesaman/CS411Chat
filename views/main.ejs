@@ -11,9 +11,9 @@
     <div id="chats-list">
     </div>
 
-    <form action="/chat" method="POST">
-      <input type="text" name="receiver" required>
-      <button type="submit">New Chat</button>
+    <form id="new-chat-form">
+      <input type="text" id="new-chat-receiver" value="">
+      <button type="submit" name="send">Send</button>
     </form>
 
     <button id="logout_button">Log out</button>
