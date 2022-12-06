@@ -1,12 +1,11 @@
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app')
-const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore')
-const credentials = require('./cs411chat-firebase-adminsdk-lo2gh-a0c52d6bf2.json')
+const credentials = require('./cs411chat-firebase-adminsdk-yidrd-00bb5f132f.json')
+const admin = require("firebase-admin");
 
-initializeApp({
-  credential: cert(credentials)
+admin.initializeApp({
+  credential: admin.credential.cert(credentials)
 });
 
-const db = getFirestore();
+const db = admin.firestore();
 
 const io = require('socket.io')(3000)
 const express = require('express')
@@ -41,7 +40,6 @@ io.on('connection', socket => {
 app.post('/api/users/create', async (req, res) => {
   const email = req.body.email;
   const id = req.body.id;
-  console.log(id)
   const chats = req.body.chats;
 
   await users.doc(id).set({email, id, chats});

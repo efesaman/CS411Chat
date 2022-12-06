@@ -17,7 +17,7 @@ function register() {
     .then((userCredential) => {
 			axios.post('/api/users/create', {
 	        email: userEmail,
-	        id: userCredential.uid,
+	        id: userCredential.user.uid,
           chats: [],
 	    });
       goToMainTab()
